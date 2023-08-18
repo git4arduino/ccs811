@@ -35,7 +35,7 @@ void showSensorValues() {
   display.setTextSize(2);
   display.print("eco2");
 
-  display.setCursor(10, 35);
+  display.setCursor(55, 55);
   display.setTextSize(1);
   display.print(eco2);
   display.print(" ppm ");
