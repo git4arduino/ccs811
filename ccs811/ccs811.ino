@@ -16,17 +16,17 @@ CCS811 Sensor | V1.0 | 10.2023
 #include "Adafruit_CCS811.h"
 #include <Adafruit_GFX.h>
 #include <Adafruit_SSD1306.h>
+#include "grafics.h"
 
 Adafruit_CCS811 ccs;
 
-#define SCREEN_WIDTH 128 // OLED display width, in pixels
-#define SCREEN_HEIGHT 64 // OLED display height, in pixels
+#define SCREEN_WIDTH 128  // OLED display width, in pixels
+#define SCREEN_HEIGHT 64  // OLED display height, in pixels
 Adafruit_SSD1306 display(SCREEN_WIDTH, SCREEN_HEIGHT, &Wire, -1);
 unsigned long previousMillis = 0;
 uint16_t eco2, etvoc;
 
-void showSensorValues()
-{
+void showSensorValues() {
   display.clearDisplay();
   display.setTextSize(1);
   display.setTextColor(WHITE);
@@ -55,10 +55,9 @@ void showSensorValues()
   display.display();
 }
 
-void getSensorValues()
-{
+void getSensorValues() {
 
-if (ccs.available()) {
+  if (ccs.available()) {
     if (!ccs.readData()) {
       //globals
       eco2 = ccs.geteCO2();
@@ -78,6 +77,8 @@ void setup() {
 
   display.begin(SSD1306_SWITCHCAPVCC, 0x3C);
   delay(100);
+  Serial.println("loading image");
+  writeTextAndGrafic("C02", "Sensor", mylogo);  // function in grafics.h
 
   if (!ccs.begin()) {
     Serial.println("Failed to start sensor! Please check your wiring.");
@@ -85,21 +86,23 @@ void setup() {
       ;
   }
 
-  // Wait for the sensor to be ready
+  // Wait for the sensor to be ready could be a few seconds
   while (!ccs.available())
     ;
+
+  //show additional 5 sec the logo
+  delay(5000);
+  Serial.println("setup finished");
 }
 
 void loop() {
 
 
-unsigned long currentMillis = millis();
+  unsigned long currentMillis = millis();
 
-  if (currentMillis - previousMillis >= 5000)
-  {
+  if (currentMillis - previousMillis >= 5000) {
     previousMillis = currentMillis;
     getSensorValues();
     showSensorValues();
   }
- 
 }
