@@ -1,7 +1,10 @@
 # CCS811 Project
 
-## Wiring
-<img src="https://github.com/git4arduino/ccs811/blob/e31df257bb85acc81bbe2c27e52e904d2b45f6a8/11_ccs811_Verdrahtung.jpg" width="600">
+## Wiring ESP32
+<img src="https://github.com/git4arduino/ccs811/blob/e31df257bb85acc81bbe2c27e52e904d2b45f6a8/11_ccs811_Verdrahtung.jpg" width="400">
+
+## Wiring Arduino UNO
+<img src="https://github.com/git4arduino/ccs811/blob/5b6844f7f2e19cc47b7c47f90c1c1a541311e2e3/17_ccs811_ccs811_arduinoUno.jpg" width="400">
 
 ## git commands
 
